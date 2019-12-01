@@ -4,17 +4,12 @@
       <table class="table table-hover table-sprite">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-            <th>BIRTHDATE</th>
-            <th>ADDRESS</th>
+            <th v-for="header in headers" :key="header">{{header | uppercase}}</th>
             <th colspan="8">&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in users" :key="user">
+          <tr v-for="user in users" :key="user.id">
             <td width="10px">{{user.id}}</td>
             <td>{{user.firstname}}</td>
             <td>{{user.lastname}}</td>
@@ -36,16 +31,22 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 
 const BASE_URI = "http://cloud.coderiders.ro:8031/users";
-
 export default {
   components: {},
   data() {
     return {
+      headers: [
+        "id",
+        "firs tname",
+        "last name",
+        "email",
+        "birth date",
+        "address"
+      ],
       users: []
     };
   },
@@ -68,6 +69,11 @@ export default {
         .catch(error => {
           console.log(error.response);
         });
+    }
+  },
+  filters: {
+    uppercase: function(value) {
+      return value.toUpperCase();
     }
   }
 };

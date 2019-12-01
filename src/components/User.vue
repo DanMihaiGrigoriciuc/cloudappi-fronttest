@@ -11,7 +11,6 @@
           <b-col sm="6">
             <b-form-input
               v-model="user.firstname"
-              type="string"
               id="firstname"
               placeholder="First Name"
               :state="$v.user.firstname.$dirty ? !$v.user.firstname.$error : null"
@@ -26,7 +25,6 @@
           <b-col sm="6">
             <b-form-input
               v-model="user.lastname"
-              type="string"
               id="lastname"
               placeholder="Last Name"
               :state="$v.user.lastname.$dirty ? !$v.user.lastname.$error : null"
@@ -74,7 +72,6 @@
           <b-col sm="4">
             <b-form-input
               v-model="user.address.street"
-              type="string"
               id="street"
               placeholder="Street"
               :state="$v.user.address.street.$dirty ? !$v.user.address.street.$error : null"
@@ -88,7 +85,6 @@
           <b-col sm="4">
             <b-form-input
               v-model="user.address.city"
-              type="string"
               id="city"
               placeholder="City"
               :state="$v.user.address.city.$dirty ? !$v.user.address.city.$error : null"
@@ -115,7 +111,6 @@
           <b-col sm="4">
             <b-form-input
               v-model="user.address.postalcode"
-              type="string"
               id="postalcode"
               placeholder="Postal Code"
               :state="$v.user.address.postalcode.$dirty ? !$v.user.address.postalcode.$error : null"
@@ -181,12 +176,10 @@ export default {
   },
 
   mounted() {
-    console.log("ROUTE", this.$route.params.id);
     if (this.$route.params.id) {
       this.user.id = parseInt(this.$route.params.id);
       this.getUserById();
     }
-    console.log("User", this.user.id);
   },
   methods: {
     getUserById: function() {
